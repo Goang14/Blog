@@ -1,0 +1,22 @@
+<div class="mt4">
+    <div class="row">
+        {{#each courses}}
+        <div class="col-sm-6 col-lg-4">
+            <div class="card card-courses-item" >
+                <a href="/course/{{this.slug}}">
+                     <img src="{{this.img}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">Họ Và Tên: {{this.name}}</h5>
+                    <p class="card-text">Tuổi: {{this.age}}</p>
+                    <p class="card-text">Địa Chỉ: {{this.address}}</p>
+                    <p class="card-text">Giá: {{this.price}}</p>
+                    <a href="/course/{{this.slug}}" class="btn btn-primary">Đặt</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
+       {{> footer}}
+</div>
