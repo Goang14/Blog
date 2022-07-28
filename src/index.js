@@ -1,22 +1,38 @@
-const path = require('path');
 const express = require('express')
-const morgan = require('morgan')
 const app = express()
+const path = require('path');
+require('dotenv').config()
 const hbs  = require('express-handlebars');
-const { route } = require('./routes/news.route');
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 require('./routes')(app);
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(methodOverride('_method'))
 
+const morgan = require('morgan')
 app.use(morgan('combined'))
-app.engine('hbs', hbs.engine({
-    extname: '.hbs'
-}));
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resource', 'views'));
 
 const db = require('./config/db');
 db.connect();
 
-app.listen(3000)
+app.use(express.static(path.join(__dirname, 'public')))
+
+//view engine
+app.engine('hbs', hbs.engine({
+    extname: '.hbs',
+    helpers: {
+        sum:(a, b) => a + b
+    }
+}));
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'resource', 'views'));
+
+
+app.listen(process.env.PORT ||5000, ()=>{
+    console.log(`Sever running on port ${process.env.PORT ||5000}`)
+})
+

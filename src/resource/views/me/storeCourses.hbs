@@ -1,0 +1,60 @@
+<div class="m-4">
+  <h1>Khóa Học Của Tôi</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tên Khóa Học</th>
+        <th scope="col">Địa Chỉ</th>
+        <th scope="col">Giá </th>
+        <th scope="col">Sửa </th>
+        <th scope="col">Xóa </th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {{#each course}}
+      <tr>
+        <th scope="row">{{sum @index 1}}</th>
+        <td>{{this.name}}</td>
+        <td>{{this.address}}</td>
+        <td>{{this.price}}</td>
+        <td><a type="button" href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a></td>
+        <td><a type="button" href="/courses/{{this._id}}" class="btn btn-link">Xóa</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+{{!-- <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xóa Mấy Con Em</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn Có Muốn Xóa Không ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+<form method="POST"></form>
+
+<script>
+  var DeleteID = document.getElementById('delete');
+  DeleteID.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    var recipient = button.getAttribute('data-id');
+    DeleteID.onclick = function () {
+      alert(recipient)
+    }
+  })
+
+</script> --}}
